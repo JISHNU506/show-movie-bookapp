@@ -97,6 +97,7 @@ function Bookedmenu() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    setShow(true)
    
 
   
@@ -104,7 +105,7 @@ function Bookedmenu() {
 
   const onChange = (e) => {
     setValues({ ...values, [e.target.name]: e.target.value });
-    setShow(true)
+   
   };
   const handleClose = () =>{ 
     setShow(false)
