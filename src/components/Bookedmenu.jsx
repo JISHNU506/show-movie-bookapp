@@ -7,29 +7,33 @@ import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
 import { useNavigate } from "react-router-dom";
 import qr from "../images/movies_screen/Default.png";
+import { useSearchParams } from "react-router-dom";
 
 import { Movies } from "./Moviedata";
 
 function Bookedmenu() {
     const navigate=useNavigate()
     const [show, setShow] = useState(false);
+    const [data]=useSearchParams()
+    const movieid=data.get("movieid")
+    const price=data.get("Price")
+    const count=data.get("count")
 
-    
-    // const handleShow = () =>;
-  const { price } = useParams();
 
-  const { count } = useParams();
 
-  console.log("priceeeee===>", price);
-  console.log("counteeeee===>", count);
+  // const { price } = useParams();
+  // const { movieid } = useParams();
+  // const { count } = useParams();
+
+  // console.log("priceeeee===>", price);
+  // console.log("counteeeee===>", count);
 
   const booking = JSON.parse(localStorage.getItem("booking"));
 
-  console.log("booking==>", booking);
+  // console.log("booking==>", booking);
 
   const [mov, setmov] = useState([]);
 
-  const { movieid } = useParams();
 
   useEffect(() => {
     const filter = Movies.filter((data) => {

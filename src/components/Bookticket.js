@@ -4,8 +4,10 @@ import { useState, useRef } from "react";
 import { Movies } from "./Moviedata";
 import Image1 from "../images/movies_screen/screen.png";
 import { useParams } from "react-router-dom";
-import { useNavigate } from "react-router-dom";
+
 import { Link } from "react-router-dom";
+import { useSearchParams } from "react-router-dom";
+import { useNavigate, createSearchParams } from "react-router-dom";
 
 import "bootstrap/dist/css/bootstrap.min.css";
 
@@ -19,6 +21,12 @@ export default function Bookticket() {
   "", "", "", "", "", "", "", "",
 ]);
 const navigate=useNavigate()
+const [data]=useSearchParams()
+// const { movieid } = useParams();
+// console.log(data.get("id"));
+const movieid=data.get("id")
+
+
 const booking = JSON.parse(localStorage.getItem("booking"));
 
 console.log("booking==>", booking);
@@ -33,7 +41,7 @@ console.log("booking==>", booking);
 
   const [mov, setmov] = useState([]);
 
-  const { movieid } = useParams();
+  
 
   useEffect(() => {
     const filter = Movies.filter((data) => {
@@ -84,8 +92,21 @@ for(var i=0;i<booking.length;i++){
   };
 
 
-  const handleShow = () => {
+  const handleShow = (Price,count,movieid) => {
+    // console.log("looooooo====>",Price,count,movieid);
+
     localStorage.setItem("booking", JSON.stringify(book));
+
+    navigate({
+      pathname: "/bookmenu",
+      search: createSearchParams({
+        movieid:movieid,
+        Price:Price,
+        count:count
+
+        
+      }).toString()
+    })
    
     
 
@@ -255,11 +276,11 @@ for(var i=0;i<booking.length;i++){
           <body2>
             {" "}
             
-            <div id="button" onClick={handleShow}>
-            <Link to={`/bookmenu/${Price}/${count}/${ movieid }`}>
+            <div id="button" onClick={()=>{handleShow(Price,count,movieid)}}>
+            {/* <Link to={`/bookmenu/${Price}/${count}/${ movieid }`}> */}
               <span id="text">Book</span>
              
-              </Link>
+              {/* </Link> */}
             </div>
           </body2>
         </>

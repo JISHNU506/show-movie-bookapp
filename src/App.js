@@ -17,8 +17,12 @@ function App() {
         <Route  path="/" element={<> <Welcome/></>}/>
 
       
-        <Route path="/booking/:movieid" element= {<Bookticket />} />
-        <Route path="/bookmenu/:price/:count/:movieid" element= {  <Bookedmenu/>} />
+        <Route path="/booking" element= {<Bookticket />} />
+              
+        {/* <Route path="/booking/:movieid" element= {<Bookticket />} /> */}
+        <Route path="/bookmenu" element= {  <Bookedmenu/>} />
+
+        {/* <Route path="/bookmenu/:price/:count/:movieid" element= {  <Bookedmenu/>} /> */}
         <Route path="/signup" element= {<SignUp />} />
       </Routes>
   );

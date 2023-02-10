@@ -2,14 +2,26 @@ import React from "react";
 import Navbar1 from "./Navbar";
 import "./style.css";
 import { Movies } from "./Moviedata";
-import { Link } from "react-router-dom";
-
-
+// import { Link } from "react-router-dom";
+import { useNavigate, createSearchParams } from "react-router-dom";
 
 function Welcome() {
+  const navigate = useNavigate();
   const bookseat = JSON.parse(localStorage.getItem("bookseat"));
 
-  console.log("bookseat==>", bookseat);
+  // console.log("bookseat==>", bookseat);
+
+  const bookingid = (id) => {
+    // console.log("id===>",id);
+    navigate({
+      pathname: "/booking",
+      search: createSearchParams({
+        
+        id: id,
+      }).toString()
+    })
+  };
+
   return (
     <>
       <div className="container_wrapper">
@@ -45,20 +57,23 @@ function Welcome() {
               </div>
               {/* <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Accusantium quos deserunt praesentium minus soluta consectetur, odit reprehenderit sapiente quia, ipsum laborum magnam labore nobis. Quo atque modi soluta doloremque in.</p> */}
             </div>
-            
           </section>
           <h1 className="mov">Latest Movies</h1>
-          
+
           <div className="cards">
-          
             {Movies &&
               Movies.map((item) => (
                 <>
-                  <Link to={`/booking/${item.id}`}>
-                    <div className="card">
-                      <img src={item?.posterUrl} />
-                    </div>
-                  </Link>
+                  {/* <Link to={`/booking/${item.id}`}> */}
+                  <div
+                    className="card"
+                    onClick={() => {
+                      bookingid(item.id);
+                    }}
+                  >
+                    <img src={item?.posterUrl} />
+                  </div>
+                  {/* </Link> */}
                 </>
               ))}
           </div>
