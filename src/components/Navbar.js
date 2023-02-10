@@ -7,13 +7,13 @@ function Navbar1() {
         <h3 className="brand">SHow Chart</h3>
         <ul>
           <li>
-            <a href="#">Home</a>
+            <a href="/">Home</a>
           </li>
           <li>
-            <a href="#">Web Series</a>
+            <a href="/signup">Web Series</a>
           </li>
           <li>
-            <a href="#">Upcoming</a>
+            <a href="/signup">Upcoming</a>
           </li>
           <li>
             <a href="/signup">Register</a>
